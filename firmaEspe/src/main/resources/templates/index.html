@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sistema de Gestión y Firma Digital</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .button-container {
+            margin-top: 50px;
+        }
+        .main-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 10px;
+            min-width: 200px;
+        }
+        .main-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistema de Gestión y Firma Digital</h1>
+    
+    <div class="button-container">
+        <a href="/gestion"><button class="main-button">Gestión</button></a>
+        <a href="/firma"><button class="main-button">Firma PDF</button></a>
+    </div>
+</body>
+</html> 

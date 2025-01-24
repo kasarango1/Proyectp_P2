@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Firma Digital de PDFs</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="file"],
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Firma Digital de PDFs</h1>
+    
+    <form id="firmaForm" th:action="@{/firma/firmar}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="archivo">Seleccionar PDF:</label>
+            <input type="file" id="archivo" name="archivo" accept=".pdf" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="rutaGuardado">Ruta de guardado:</label>
+            <input type="text" id="rutaGuardado" name="rutaGuardado" 
+                   placeholder="Ejemplo: C:/MisDocumentos" required>
+        </div>
+        
+        <button type="submit">Firmar PDF</button>
+    </form>
+    
+    <div id="mensaje" class="error"></div>
+
+    <script>
+        document.getElementById('firmaForm').onsubmit = function(e) {
+            const archivo = document.getElementById('archivo').files[0];
+            if (!archivo) {
+                e.preventDefault();
+                document.getElementById('mensaje').textContent = 
+                    'Por favor, seleccione un archivo PDF';
+                return false;
+            }
+            if (!archivo.name.toLowerCase().endsWith('.pdf')) {
+                e.preventDefault();
+                document.getElementById('mensaje').textContent = 
+                    'Por favor, seleccione un archivo PDF válido';
+                return false;
+            }
+        };
+    </script>
+</body>
+</html> 
